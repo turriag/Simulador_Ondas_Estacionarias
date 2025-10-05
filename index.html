@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulador Ondas Estacionarias — Cuerda con extremos fijos</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Ondas Estacionarias en una Cuerda</h1>
+  </header>
+
+  <section class="controls">
+    <div class="control">
+      <label for="tension">Tensión T [N]</label>
+      <input id="tension" type="range" min="1" max="500" step="1" value="100">
+      <span id="tensionVal">100.0</span>
+    </div>
+    <div class="control">
+      <label for="amplitud">Amplitud A [m]</label>
+      <input id="amplitud" type="range" min="0.001" max="0.05" step="0.001" value="0.02">
+      <span id="amplitudVal">0.020</span>
+    </div>
+    <div class="control">
+      <label for="modo">Modo n</label>
+      <input id="modo" type="range" min="1" max="5" step="1" value="1">
+      <span id="modoVal">1</span>
+    </div>
+
+    <div class="buttons">
+      <button id="btnPlay">⏯ Reproducir/Pausar</button>
+      <button id="btnStudy">📈 Estudio Tensión</button>
+    </div>
+  </section>
+
+  <section class="info">
+    <div>μ = <span id="muVal">0.0100</span> kg/m</div>
+    <div>L = <span id="LVal">1.00</span> m</div>
+    <div>λₙ = <span id="lambdaVal">2.000</span> m</div>
+    <div>v = <span id="vVal">100.000</span> m/s</div>
+    <div>fₙ = <span id="fVal">50.000</span> Hz</div>
+  </section>
+
+  <section class="canvas-wrap">
+    <canvas id="waveCanvas" width="1000" height="300"></canvas>
+  </section>
+
+  <!-- Modal estudio -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Estudio paramétrico de Tensión (<span id="nEval">n=1</span>)</h2>
+        <button id="closeModal">✕</button>
+      </div>
+      <div class="charts">
+        <div class="chart-box"><canvas id="chartV"></canvas></div>
+        <div class="chart-box"><canvas id="chartF"></canvas></div>
+      </div>
+      <div class="table-wrap">
+        <table id="resultTable">
+          <thead><tr><th>T [N]</th><th>v [m/s]</th><th>fₙ [Hz]</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>
